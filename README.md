@@ -210,6 +210,25 @@ $PROJECT_DIR$\.venv\Scripts\python.exe
 
 If PyCharm offers the included run configuration, select **ALife Quick Demo** from the Run/Debug configuration dropdown.
 
+For the interactive live window, select **ALife Live View**. It uses:
+
+```text
+Script path:
+$PROJECT_DIR$/main.py
+
+Working directory:
+$PROJECT_DIR$
+
+Interpreter:
+$PROJECT_DIR$/.venv/bin/python
+
+Parameters:
+--config configs/long_live_analysis.yaml --live
+
+Environment variables:
+PYTHONUNBUFFERED=1;MPLCONFIGDIR=$PROJECT_DIR$/.matplotlib
+```
+
 ---
 
 ## Example Experiments
