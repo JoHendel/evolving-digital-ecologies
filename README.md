@@ -210,9 +210,7 @@ On Windows, the interpreter path will usually be:
 $PROJECT_DIR$\.venv\Scripts\python.exe
 ```
 
-If PyCharm offers the included run configuration, select **ALife Quick Demo** from the Run/Debug configuration dropdown.
-
-For the interactive live window, select **ALife Live View**. It uses:
+For the interactive live window, create a second Python run configuration with:
 
 ```text
 Script path:
@@ -330,8 +328,6 @@ alife_thesis_sim_github_upload/
 |   |-- runs/
 |   |-- exports/
 |   `-- plots/
-|-- .codex/
-`-- .idea/runConfigurations/
 ```
 
 ---
