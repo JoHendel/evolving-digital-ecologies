@@ -10,7 +10,7 @@ It is designed as a serious experimental system for exploring how population-lev
 
 ![Live simulation preview](media/live_preview.png)
 
-[Demo video](media/demo.mp4)
+**Demo video:** [Eine Welt im Computer](media/eine-welt-im-computer.mp4)
 
 ---
 
@@ -322,7 +322,8 @@ alife_thesis_sim_github_upload/
 |-- docs/
 |-- notebooks/
 |-- media/
-|   `-- demo.mp4
+|   |-- eine-welt-im-computer.mp4
+|   `-- live_preview.png
 |-- data/
 |   |-- logs/
 |   |-- runs/
@@ -347,7 +348,7 @@ Additional visual artifacts can be added here after future runs:
 
 Current demo video:
 
-[Watch the live simulation demo](media/demo.mp4)
+[Eine Welt im Computer](media/eine-welt-im-computer.mp4)
 
 ---
 
