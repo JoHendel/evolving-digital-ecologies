@@ -10,9 +10,8 @@ Icon?
 .Spotlight-V100
 .Trashes
 .fseventsd
-.idea/*
-!.idea/runConfigurations/
-!.idea/runConfigurations/*.xml
+.idea/
+.codex/
 .pytest_cache/
 .pytest_cache_local/
 .tmp_pytest/
