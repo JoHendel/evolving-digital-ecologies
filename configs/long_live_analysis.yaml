@@ -1,0 +1,54 @@
+world:
+  width: 900.0
+  height: 650.0
+  toroidal: true
+  resources:
+    initial_count: 260
+    spawn_rate: 2.8
+    max_count: 650
+    energy_min: 8.0
+    energy_max: 30.0
+    radius: 2.4
+  zones:
+    enabled: true
+    hazard_damage: 0.30
+    fertile_spawn_multiplier: 2.2
+    poor_spawn_multiplier: 0.35
+    climate_period: 2200
+agents:
+  initial_population: 80
+  initial_energy: 82.0
+  max_age: 3600
+  crowding_radius: 9.0
+  crowding_cost: 0.014
+  interaction_radius: 8.0
+  attack_energy_gain: 3.0
+  attack_damage: 2.5
+behavior:
+  mode: heuristic
+  neural_hidden_size: 10
+  hybrid_neural_fraction: 0.0
+mutation:
+  rate: 0.08
+  strength: 0.12
+  major_event_rate: 0.01
+  major_event_strength: 0.35
+  neural_weight_sigma: 0.08
+simulation:
+  steps: 15000
+  seed: 42
+  dt: 1.0
+  metrics_interval: 20
+  output_dir: data/runs
+  run_name: long_live_analysis
+  stop_on_extinction: true
+visualization:
+  enabled: false
+  width: 1100
+  height: 800
+  fps: 60
+  draw_perception: false
+  audio_enabled: true
+  audio_interval_steps: 25
+  audio_duration_ms: 130
+  audio_volume: 0.20

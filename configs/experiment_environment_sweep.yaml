@@ -1,0 +1,7 @@
+name: environment_sweep
+base_config: configs/default.yaml
+repeats: 3
+sweep:
+  world.resources.spawn_rate: [1.0, 2.5, 5.0]
+  world.zones.hazard_damage: [0.0, 0.35, 0.75]
+

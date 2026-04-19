@@ -1,0 +1,26 @@
+world:
+  width: 900.0
+  height: 650.0
+  toroidal: true
+behavior:
+  mode: neural
+  neural_hidden_size: 12
+  hybrid_neural_fraction: 1.0
+agents:
+  initial_population: 90
+  initial_energy: 80.0
+mutation:
+  rate: 0.07
+  strength: 0.10
+  major_event_rate: 0.008
+  major_event_strength: 0.30
+  neural_weight_sigma: 0.06
+simulation:
+  steps: 6000
+  seed: 123
+  metrics_interval: 10
+  output_dir: data/runs
+  run_name: neural_baseline
+visualization:
+  enabled: false
+

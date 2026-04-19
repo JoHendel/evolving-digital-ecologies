@@ -1,0 +1,227 @@
+EVOLVING DIGITAL ECOLOGIES
+NotebookLM Upload-Datei
+
+============================================================
+1. PROJEKTUEBERBLICK
+============================================================
+
+Titel:
+Evolving Digital Ecologies: Eine Artificial-Life-Simulation zur Untersuchung von Evolution, Emergenz und Populationsdynamik.
+
+Kurzbeschreibung:
+Das Projekt ist eine wissenschaftliche Python-Simulation, in der digitale Organismen in einer dynamischen 2D-Welt leben. Die Agenten suchen Ressourcen, verbrauchen Energie, altern, sterben und reproduzieren sich. Ihre Eigenschaften werden vererbt und durch Mutation veraendert. Dadurch entsteht ueber viele Simulationsschritte ein evolutionaerer Prozess.
+
+Zentrale Forschungsfrage:
+Wie koennen komplexe Populationsmuster aus einfachen lokalen Regeln, Ressourcenknappheit, Mutation, Vererbung und Selektionsdruck entstehen?
+
+Warum ist das Projekt interessant?
+Das Projekt zeigt, wie Evolution und Emergenz in einem kontrollierten Computermodell untersucht werden koennen. Es gibt keine zentral gesteuerte Intelligenz und keine direkt programmierte globale Fitnessfunktion. Erfolg entsteht indirekt: Agenten, die laenger ueberleben und sich haeufiger reproduzieren, praegen die spaetere Population.
+
+Was wird simuliert?
+- Eine kontinuierliche 2D-Welt
+- Ressourcen, die aufgenommen und neu erzeugt werden
+- Fruchtbare, arme und gefaehrliche Umweltzonen
+- Agenten mit Energie, Alter, Gesundheit und Position
+- Vererbbare Traits wie Geschwindigkeit, Wahrnehmung, Metabolismus, Aggression und Sozialverhalten
+- Reproduktion mit Mutation
+- Sterben durch Energiemangel, Alter, Schaden oder Umweltgefahren
+- Messung von Population, Ressourcen, Energie, Diversitaet und Abstammungslinien
+
+Ziel der Software:
+Die Software dient als Forschungsplattform. Sie soll nicht nur eine Animation zeigen, sondern Daten erzeugen, die wissenschaftlich ausgewertet werden koennen. Deshalb werden CSV-Dateien, JSON-Zusammenfassungen und Plots gespeichert.
+
+============================================================
+2. ARCHITEKTUR UND MODULE
+============================================================
+
+Das Projekt ist modular aufgebaut. Jede Komponente hat eine klare Aufgabe.
+
+src/core:
+Dieses Modul enthaelt Konfigurationen aus YAML-Dateien, Vektor-Geometrie und deterministische Zufallsquellen fuer reproduzierbare Experimente.
+
+src/world:
+Dieses Modul beschreibt die Umwelt: Weltgroesse, Ressourcen, Umweltzonen, Gefahrenbereiche, Ressourcen-Spawning und Umweltveraenderungen.
+
+src/agents:
+Dieses Modul beschreibt die digitalen Organismen. Jeder Agent besitzt eine ID, Position, Energie, Alter, Gesundheit, Abstammungslinie, Genome und vererbbare Traits.
+
+src/behavior:
+Dieses Modul entscheidet, was Agenten tun: Ressourcen suchen, ausweichen, explorieren, reproduzieren oder optional angreifen. Es gibt einen heuristischen Controller und optional einen Neural-Controller.
+
+src/evolution:
+Dieses Modul enthaelt Mutation, Reproduktion, Vererbung, Linienverfolgung und Populationsinitialisierung.
+
+src/simulation:
+Dieses Modul verbindet alles. Es aktualisiert die Welt, laesst Agenten wahrnehmen, fuehrt Aktionen aus, berechnet Energie und Tod, loest Reproduktion aus und sammelt Metriken.
+
+src/analytics:
+Dieses Modul erzeugt wissenschaftlich auswertbare Daten wie metrics.csv, final_population.csv und summary.json.
+
+src/visualization:
+Dieses Modul erzeugt das Live-Bild mit Pygame, ein Dashboard im Live-Fenster und Plots nach dem Lauf.
+
+src/experiments:
+Dieses Modul erlaubt Parameter-Sweeps, zum Beispiel verschiedene Mutationsraten, Ressourcenmengen, Hazard-Vergleiche oder Heuristik vs. Neuroevolution.
+
+Warum diese Architektur sinnvoll ist:
+Die klare Trennung macht das Projekt wissenschaftlich nutzbar. Man kann eine Komponente veraendern, ohne alles neu zu schreiben. Spaeter koennte man Predator-Prey-Systeme, Kommunikation, Territorialitaet oder neue Metriken ergaenzen.
+
+============================================================
+3. SIMULATIONSABLAUF
+============================================================
+
+Die Simulation laeuft in diskreten Zeitschritten.
+
+Schritt 1: Welt aktualisieren
+Die Welt erzeugt neue Ressourcen. Die Menge haengt von Konfiguration, Umweltzonen und Klimafaktor ab.
+
+Schritt 2: Agenten nehmen ihre Umgebung wahr
+Jeder Agent erhaelt lokale Informationen: naechste Ressource, Nachbarn, eigene Energie, Gefahrzone und Alter. Agenten haben keine globale Sicht.
+
+Schritt 3: Verhalten auswaehlen
+Der Controller entscheidet Aktionen: Richtung aendern, bewegen, reproduzieren, optional angreifen oder Signal aussenden.
+
+Schritt 4: Bewegung und Energie
+Agenten bewegen sich entsprechend ihrer Geschwindigkeit. Bewegung, Wahrnehmung und Metabolismus kosten Energie. Gefahrenzonen koennen Schaden verursachen.
+
+Schritt 5: Ressourcenaufnahme
+Wenn ein Agent eine Ressource erreicht, nimmt er deren Energie auf. Die Ressource verschwindet danach aus der Welt.
+
+Schritt 6: Reproduktion
+Wenn ein Agent genug Energie besitzt, kann er ein Kind erzeugen. Das Kind erbt die Traits des Elternteils, aber mit Mutation.
+
+Schritt 7: Tod
+Agenten sterben, wenn ihre Energie aufgebraucht ist, sie zu alt werden oder ihre Gesundheit zu stark sinkt.
+
+Schritt 8: Metriken speichern
+In regelmaessigen Abstaenden werden Metriken gespeichert: Populationsgroesse, Ressourcenanzahl, Geburten, Tode, mittlere Energie, Trait-Diversitaet, Clusterindex und Anzahl lebender Abstammungslinien.
+
+============================================================
+4. ERGEBNISSE UND INTERPRETATION
+============================================================
+
+Ausgewerteter Lauf:
+Der wichtigste Beispielrun heisst long_live_analysis.
+
+Kerndaten:
+- Simulationsdauer: 15.000 Schritte
+- Finale Population: 187 Agenten
+- Maximale Population: 366 Agenten
+- Geburten insgesamt: 9.834
+- Tode insgesamt: 9.727
+- Finale lebende Abstammungslinien: 1
+- Finale Trait-Diversitaet: 0.329
+
+Hauptbeobachtung:
+Die Population ist nicht ausgestorben. Sie ist zunaechst gewachsen, hat dann aber Ressourcen stark verbraucht. Danach stabilisierte sich die Population auf niedrigerem Energieniveau.
+
+Wichtigste Beobachtung:
+Am Ende war nur noch eine Abstammungslinie uebrig. Das bedeutet, dass eine Linie evolutionaer sehr erfolgreich war und andere Linien verdraengt hat.
+
+Interpretation als evolutionaerer Sweep:
+Ein evolutionaerer Sweep bedeutet, dass sich eine vorteilhafte Variante in einer Population stark ausbreitet. Im Projekt passiert das nicht durch eine programmierte Bevorzugung, sondern weil diese Linie besser ueberlebt und sich haeufiger reproduziert.
+
+Welche Strategie setzte sich durch?
+Die finalen Agenten hatten im Mittel hohe Geschwindigkeit, niedrigen Metabolismus, relativ hohe Aggression, sehr niedrige Sozialtendenz und eher niedrige Wahrnehmungsreichweite.
+
+Wissenschaftliche Aussage:
+In der getesteten Umwelt beguenstigt die Simulation keine Kooperation, sondern Konkurrenz um knappe Ressourcen. Erfolgreiche Agenten sind energiesparend, schnell und kompetitiv.
+
+Wichtige Plots:
+- population_resources.png zeigt Population und Ressourcen.
+- energy_diversity.png zeigt Energie und Trait-Diversitaet.
+- trait_evolution.png zeigt die Entwicklung zentraler Traits.
+- spatial_lineage.png zeigt raeumliche Muster und Linienzahl.
+- population_energy_phase.png zeigt die Beziehung zwischen Populationsgroesse und Energie.
+- final_spatial_traits.png zeigt finale Positionen und Eigenschaften.
+- final_trait_histograms.png zeigt finale Trait-Verteilungen.
+
+Einschraenkung:
+Ein einzelner Lauf ist kein endgueltiger Beweis. Fuer eine staerkere wissenschaftliche Aussage sollten mehrere Laeufe mit verschiedenen Seeds durchgefuehrt und statistisch verglichen werden.
+
+============================================================
+5. LERNVIDEO-SKRIPT
+============================================================
+
+Video-Titel:
+Wie entsteht Evolution in einer kuenstlichen 2D-Oekologie?
+
+Einleitung:
+In diesem Projekt wird eine kuenstliche Lebenswelt simuliert. Digitale Organismen bewegen sich in einer 2D-Umwelt, suchen Ressourcen, verbrauchen Energie, sterben und reproduzieren sich. Ihre Eigenschaften werden vererbt und durch Mutation veraendert. Dadurch entsteht ein evolutionaerer Prozess.
+
+Forschungsfrage:
+Die zentrale Frage lautet: Koennen aus einfachen lokalen Regeln komplexe Populationsmuster entstehen? Das Projekt untersucht, wie Ressourcenknappheit, Mutation, Vererbung und Selektionsdruck zusammenwirken.
+
+Die Welt:
+Die Welt ist eine kontinuierliche 2D-Flaeche. In ihr gibt es Ressourcen, fruchtbare Zonen, arme Zonen und Gefahrbereiche. Ressourcen liefern Energie. Gefahren koennen Agenten schaden.
+
+Die Agenten:
+Jeder Agent besitzt Energie, Alter, Gesundheit, Position und eine Abstammungslinie. Ausserdem hat er vererbbare Traits wie Geschwindigkeit, Wahrnehmung, Metabolismus, Aggression und Sozialverhalten.
+
+Verhalten:
+Agenten handeln lokal. Sie sehen nur ihre Umgebung und entscheiden dann, ob sie Ressourcen suchen, sich bewegen, reproduzieren oder mit anderen Agenten interagieren. Es gibt keine zentrale Steuerung.
+
+Evolution:
+Wenn ein Agent genug Energie besitzt, kann er sich reproduzieren. Das Kind erbt die Traits des Elternteils, aber mit kleinen Mutationen. Ueber viele Generationen setzen sich Traits durch, die in der Umwelt vorteilhaft sind.
+
+Emergenz:
+Emergenz bedeutet, dass Muster entstehen, die nicht direkt programmiert wurden. Zum Beispiel kann eine Population wachsen, kollabieren, clustern oder eine dominante Abstammungslinie bilden.
+
+Auswertung:
+Die Simulation speichert wissenschaftliche Daten: Population, Ressourcen, Energie, Trait-Diversitaet, Geburten, Tode und Abstammungslinien. Nach dem Lauf werden Plots erzeugt.
+
+Beispielergebnis:
+Im Lauf long_live_analysis ueberlebte die Population 15.000 Schritte. Die Population erreichte maximal 366 Agenten und endete mit 187 Agenten. Besonders auffaellig war, dass am Ende nur noch eine Abstammungslinie uebrig blieb.
+
+Interpretation:
+Das Ergebnis deutet auf einen evolutionaeren Sweep hin. Eine Linie hatte eine erfolgreiche Kombination von Eigenschaften und hat andere Linien verdraengt. Die erfolgreiche Strategie war schnell, sparsam und eher kompetitiv.
+
+Fazit:
+Das Projekt zeigt, dass einfache lokale Regeln, Mutation und Ressourcenknappheit ausreichen koennen, um komplexe evolutionaere Dynamiken zu erzeugen.
+
+============================================================
+6. GLOSSAR UND FAQ
+============================================================
+
+Agent:
+Ein digitaler Organismus in der Simulation.
+
+Trait:
+Eine vererbbare Eigenschaft eines Agenten, zum Beispiel Geschwindigkeit oder Aggression.
+
+Genom:
+Die Gesamtheit der vererbbaren Informationen eines Agenten.
+
+Mutation:
+Eine kleine zufaellige Veraenderung der vererbten Eigenschaften bei der Reproduktion.
+
+Selektion:
+Der Prozess, bei dem erfolgreiche Eigenschaften haeufiger in spaeteren Generationen vorkommen.
+
+Emergenz:
+Das Entstehen hoeherer Muster aus einfachen lokalen Regeln.
+
+Lineage:
+Eine Abstammungslinie.
+
+Evolutionaerer Sweep:
+Ein Prozess, bei dem sich eine besonders erfolgreiche Linie oder Variante in der Population durchsetzt.
+
+Trait-Diversitaet:
+Ein Mass dafuer, wie unterschiedlich die Eigenschaften der Agenten in der Population sind.
+
+FAQ: Ist das eine echte biologische Simulation?
+Nein. Es ist ein abstrahiertes Computermodell, das biologische Prinzipien vereinfacht nachbildet.
+
+FAQ: Gibt es eine programmierte Fitnessfunktion?
+Nein. Erfolg entsteht indirekt durch Ueberleben und Reproduktion.
+
+FAQ: Warum ist das wissenschaftlich interessant?
+Weil untersucht werden kann, welche Muster aus lokalen Regeln entstehen.
+
+FAQ: Bedeutet das Ergebnis, dass Kooperation nicht entstehen kann?
+Nein. Es bedeutet nur, dass in dieser konkreten Konfiguration Konkurrenz beguenstigt wurde. Andere Umweltbedingungen koennten Kooperation beguenstigen.
+
+FAQ: Was waere der naechste wissenschaftliche Schritt?
+Mehrere Wiederholungen mit verschiedenen Seeds und systematische Parameter-Sweeps.
+

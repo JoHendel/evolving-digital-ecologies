@@ -1,0 +1,7 @@
+name: mutation_sweep
+base_config: configs/default.yaml
+repeats: 3
+sweep:
+  mutation.rate: [0.02, 0.08, 0.16]
+  mutation.strength: [0.06, 0.12]
+
