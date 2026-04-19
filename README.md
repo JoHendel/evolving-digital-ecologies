@@ -8,6 +8,8 @@ It is designed as a serious experimental system for exploring how population-lev
 
 > **Research premise:** no global fitness function is imposed. Selection emerges indirectly from survival, resource access, reproduction, mutation, and changing environmental constraints.
 
+![Live simulation preview](media/live_preview.png)
+
 [Demo video](media/demo.mp4)
 
 ---
@@ -336,7 +338,11 @@ alife_thesis_sim_github_upload/
 
 ## Screenshots / Visual Output
 
-Visual artifacts can be added here after future runs:
+Live simulation preview:
+
+![Live simulation preview](media/live_preview.png)
+
+Additional visual artifacts can be added here after future runs:
 
 - live simulation screenshot showing agents, resources, zones, and lineage colors
 - animated GIF of population movement and lineage dominance
