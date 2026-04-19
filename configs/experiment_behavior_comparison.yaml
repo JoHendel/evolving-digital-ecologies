@@ -1,0 +1,5 @@
+name: behavior_comparison
+base_config: configs/default.yaml
+repeats: 3
+sweep:
+  behavior.mode: [heuristic, neural]
