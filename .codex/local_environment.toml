@@ -1,0 +1,15 @@
+[environment]
+name = "alife-thesis-sim"
+description = "Local Python environment for the artificial-life simulation project."
+python = "3.11"
+project_root = "."
+
+[setup]
+virtualenv = ".venv"
+install = "python -m pip install -r requirements.txt"
+
+[commands]
+install_dependencies = "python -m pip install -r requirements.txt"
+run_app = "MPLCONFIGDIR=.matplotlib python main.py --config configs/quick_demo.yaml --plot"
+run_live = "MPLCONFIGDIR=.matplotlib python main.py --config configs/long_live_analysis.yaml --live"
+run_tests = "python -m pytest"

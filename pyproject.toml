@@ -6,7 +6,12 @@ build-backend = "setuptools.build_meta"
 name = "alife-thesis-sim"
 version = "0.1.0"
 description = "Research-grade artificial life simulation framework for emergent evolutionary dynamics."
+readme = "README.md"
 requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Johannes Hendel" },
+]
 dependencies = [
     "numpy>=1.26",
     "pandas>=2.1",
@@ -15,8 +20,15 @@ dependencies = [
     "pygame>=2.5",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+alife-sim = "main:main"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
 addopts = "-q"
-

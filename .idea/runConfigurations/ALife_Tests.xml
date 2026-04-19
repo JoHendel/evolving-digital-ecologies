@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="ALife Tests" type="tests" factoryName="py.test">
+    <module name="alife_thesis_sim_github_upload" />
+    <option name="INTERPRETER_OPTIONS" value="" />
+    <option name="PARENT_ENVS" value="true" />
+    <envs>
+      <env name="PYTHONUNBUFFERED" value="1" />
+      <env name="MPLCONFIGDIR" value="$PROJECT_DIR$/.matplotlib" />
+    </envs>
+    <option name="SDK_HOME" value="$PROJECT_DIR$/.venv/bin/python" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <option name="IS_MODULE_SDK" value="false" />
+    <option name="_new_additionalArguments" value="" />
+    <option name="_new_target" value="$PROJECT_DIR$/tests" />
+    <option name="_new_targetType" value="PATH" />
+    <method v="2" />
+  </configuration>
+</component>
