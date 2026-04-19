@@ -10,7 +10,7 @@ It is designed as a serious experimental system for exploring how population-lev
 
 ![Live simulation preview](media/live_preview.png)
 
-**Demo video:** [Eine Welt im Computer](media/eine-welt-im-computer.mp4)
+**Demo video:** [Eine Welt im Computer](https://github.com/JoHendel/evolving-digital-ecologies/releases/download/v1.0.0/eine-welt-im-computer.mp4)
 
 ---
 
@@ -348,7 +348,9 @@ Additional visual artifacts can be added here after future runs:
 
 Current demo video:
 
-[Eine Welt im Computer](media/eine-welt-im-computer.mp4)
+[Eine Welt im Computer - MP4 download](https://github.com/JoHendel/evolving-digital-ecologies/releases/download/v1.0.0/eine-welt-im-computer.mp4)
+
+If GitHub's file preview appears blank, use the release download link above. The MP4 is also stored in the repository at `media/eine-welt-im-computer.mp4`.
 
 ---
 
