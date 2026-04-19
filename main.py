@@ -1,4 +1,8 @@
-"""Command-line entry point for PyCharm and terminal execution."""
+"""Command-line interface for running artificial-life simulations.
+
+The file intentionally lives at the repository root so PyCharm users can run
+the project directly without installing it as a package first.
+"""
 
 from __future__ import annotations
 
